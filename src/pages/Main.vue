@@ -1,17 +1,17 @@
 <template>
   <div>
-    <Hero />
-    <Table />
+    <Hero data-scroll-section />
+    <Faces data-scroll-section />
   </div>
 </template>
 
 <script>
-import Hero from '../components/Hero'
-import Table from '../components/Table'
+import Hero from '../components/Hero.vue'
+import Faces from '../components/Faces.vue'
 
 export default {
   name: 'Main',
-  components: { Hero, Table },
+  components: { Hero, Faces },
 }
 </script>
 
