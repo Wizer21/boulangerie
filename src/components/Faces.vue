@@ -1,48 +1,54 @@
 <template>
   <div id="faces">  
     <div class="holder">
-      <div class="p1Text" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
-        <h2>
-          Artémis
-        </h2>
-        <p>
-          force . sagesse
-        </p>
-      </div>
-      <div data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/p1.png')">
+      <div class="characterHolder" id="ch1" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
+        <div class="p1Text">
+          <h2 class="name">
+            Artémis
+          </h2>
+          <p class="subTitles">
+            force . sagesse
+          </p>
+        </div>
+        <div class="faceImage">
+          <img :src="require('../assets/images/p1.png')">
+        </div>
       </div>
       <div class="backp1">        
       </div>
     </div>
     <div class="holder">
-      <div id="p2Img" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/p2.png')">
-      </div>
-      <div id="p2Text" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
-        <h2>
-          Mercure 
-        </h2>
-        <p>
-          éloquence . rapidité
-        </p>
+      <div class="characterHolder" id="ch2" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
+        <div id="p2Img" class="faceImage">
+          <img :src="require('../assets/images/p2.png')">
+        </div>
+        <div id="p2Text">
+          <h2 class="name">
+            Mercure 
+          </h2>
+          <p class="subTitles">
+            éloquence . rapidité
+          </p>
+        </div>
       </div>
       <div id="backp2">        
       </div>
     </div>
     <div class="holder" id="p3">
-      <div class="p1Text" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
-        <h2>
-          Sobek
-        </h2>
-        <p>
-          le stagiaire
-        </p>
+      <div class="characterHolder" id="ch3" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
+        <div class="p1Text" >
+          <h2 class="name">
+            Sobek
+          </h2>
+          <p class="subTitles">
+            le stagiaire
+          </p>
+        </div>
+        <div id="p3Img" class="faceImage">
+          <img :src="require('../assets/images/p3.png')">
+        </div>
       </div>
       <div class="backp1">        
-      </div>
-      <div id="p3Img" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/p3.png')">
       </div>
     </div>
   </div>
@@ -62,46 +68,83 @@ export default {
 }
 .holder
 {
-  height: 50vh;
+  height: 30vw;
   width: 100vw;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.holder div
+{
+  grid-column: 1;
+  grid-row: 1;
+}
+.name
+{
+  font-size: 7vw;
+  z-index: 2;
+  margin: 0;
+}
+.subTitles
+{
+  font-size: 3vw;
+  z-index: 2;
+  margin: 0;
+}
+.faceImage
+{
+  width: 30vw;
+  height: 30vw;
+}
+.faceImage img
+{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.characterHolder
+{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 }
 /* p1 */
+#ch1
+{
+  margin-left: 15vw;
+}
+.p1Text
+{
+  color: #262626;
+}
 .p1Text h2
 {
-  font-size: 5em;
-  color: #262626;
-  z-index: 2;
-  margin: 0;
-  margin-left: -5vw;
-}
-.p1Text p
-{
-  font-size: 2em;
-  color: #262626;
-  z-index: 2;
-  margin: 0;
+  margin-left: -7vw;
 }
 .backp1
 {
-  position: absolute;
   background-color: #c9c9c9;
-  height: 40vh;
+  height: 40vw;
   width: 200vw;
-  transform: rotate(20deg);  
-  left: -65vw;
+  transform: rotate(20deg) translateY(10vh);  
   z-index: -1;
 }
 /* p2 */
+#ch2
+{
+  margin-left: -15vw;
+}
 #p2Text
 {
-  font-size: 2em;
   color: #c9c9c9;
-  z-index: 2;
   margin-top: 25vh;
+}
+#p2Text h2
+{
+  margin-left: 5vw;  
 }
 #p2Img
 {
@@ -109,17 +152,50 @@ export default {
 }
 #backp2
 {
-  position: absolute;
   background-color: #262626;
-  height: 40vh;
+  height: 40vw;
   width: 200vw;
-  transform: rotate(-20deg);  
-  top: 80vh;
+  transform: rotate(-20deg) translateY(20vh);  
   z-index: -1;
 }
 /* p3 */
 #p3
 {
-  margin-top: 20vh;
+  margin-top: 30vh;
+}
+#ch3
+{
+  margin-left: 15vw;
+}
+
+@media screen and (max-width: 1000px) {  
+  #ch1
+  {
+    margin-top: 15vh;
+  }
+  #ch2
+  {
+    margin-top: 15vh;
+  }
+  #ch3
+  {
+    margin-top: 15vh;
+  }
+  .name
+  {
+    font-size: 10vw;
+  }
+  .subTitles
+  {
+    font-size: 5vw;
+  }
+  .backp1 
+  {
+    height: 60vw;    
+  }
+  #backp2
+  {
+    height: 60vw;
+  }
 }
 </style>

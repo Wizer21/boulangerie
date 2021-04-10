@@ -14,7 +14,7 @@
         Boulangerie
       </h1>
     </div>
-    <div class="parts">
+    <div class="parts" id="part2">
       <div id="shopHolder" data-scroll data-scroll-speed="-1" data-scroll-direction="horizontal">
         <img :src="require('../assets/images/shop.jpg')" alt="bread" class="floatingImage">
       </div>
@@ -147,13 +147,16 @@ export default {
 #shopHolder
 {
   left: 15vw;
-  top: 100vh;
   width: 50vw;
+}
+#part2
+{
+  transform: translateY(0vh);
 }
 #clapHolder
 {
   left: 55vw;
-  top: 150vh;
+  top: 50vh;
   width: 35vw;
 }
 </style>
