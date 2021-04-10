@@ -2,6 +2,9 @@
   <div>
     <Hero data-scroll-section />
     <Faces data-scroll-section />
+    <div id="test">
+
+    </div>
   </div>
 </template>
 
@@ -16,4 +19,10 @@ export default {
 </script>
 
 <style scoped>
+#test
+{
+  height: 100vh;
+  width: 100vw;
+  background-color: bisque;
+}
 </style>

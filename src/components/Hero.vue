@@ -31,7 +31,6 @@ export default {
   mounted(){
     let images = document.querySelectorAll('.parts div')
     for (let img of images){
-      console.log("it")
       img.dataset.x = 0
       img.dataset.y = 0
 
@@ -47,17 +46,19 @@ export default {
       img.addEventListener('mousemove', event => {
         if (img.dataset.holded == "in"){
           let rect = img.getBoundingClientRect()
-          img.dataset.x = parseInt(img.dataset.x) + ((event.offsetX - rect.width/2) /10)
+          img.dataset.x = parseInt(img.dataset.x) + (((rect.left + event.offsetX) - rect.width/2) /10)
           img.dataset.y = parseInt(img.dataset.y) + ((event.offsetY - rect.height/2) /10)
 
-          img.style.transform = `translate(${img.dataset.x}px, ${img.dataset.y}px) scale(1.2)`
+          //img.style.transform = `translate(${img.dataset.x}px, ${img.dataset.y}px) scale(1.2)`
+          img.style.left = `${rect.left + (event.offsetX - rect.width/2)}px`
+          img.style.top = `${rect.top + (event.offsetY - rect.height/2)}px`
         }
       })
     }
 
     function pickUp(item){
       item.dataset.holded = "in"
-      item.style.transform = `translate(${item.dataset.x}px, ${item.dataset.y}px) scale(1.2)`
+      //item.style.transform = `translate(${item.dataset.x}px, ${item.dataset.y}px) scale(1.2)`
 
       let child = item.children[0]
       child.style.boxShadow = "-10px 10px 50px #1a1a1a"
@@ -65,7 +66,7 @@ export default {
 
     function drop(item){
       item.dataset.holded = "out"
-      item.style.transform = `translate(${item.dataset.x}px, ${item.dataset.y}px) scale(1)`
+      //item.style.transform = `translate(${item.dataset.x}px, ${item.dataset.y}px) scale(1)`
 
       let child = item.children[0]
       child.style.boxShadow = "-10px 10px 20px #1a1a1a"
@@ -107,6 +108,7 @@ export default {
   transition-duration: 300ms;
   transition-timing-function: ease-out;
   cursor: pointer;
+  perspective: 300px;
 }
 /* Bread */
 #breadHolder
