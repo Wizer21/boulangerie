@@ -4,7 +4,7 @@
       <div class="characterHolder" id="ch1" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
         <div class="p1Text">
           <h2 class="name">
-            Artémis
+            Anne
           </h2>
           <p class="subTitles">
             force . sagesse
@@ -24,7 +24,7 @@
         </div>
         <div id="p2Text">
           <h2 class="name">
-            Mercure 
+            Léon 
           </h2>
           <p class="subTitles">
             éloquence . rapidité
@@ -38,7 +38,7 @@
       <div class="characterHolder" id="ch3" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
         <div class="p1Text" >
           <h2 class="name">
-            Sobek
+            Lucien
           </h2>
           <p class="subTitles">
             le stagiaire

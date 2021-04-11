@@ -1,14 +1,43 @@
 <template>
-  <Main data-scroll-container />
+  <Main data-scroll-container id="menu"/>
+  <Creations data-scroll-container id="crea"/>
+  <Navigator data-scroll-container @goMain="goMain" @goCreations="goCreations"/>
 </template>
 
 <script>
 import Main from './pages/Main.vue'
+import Creations from './pages/Creations.vue'
+import Navigator from './components/Navigator.vue'
+
 import LocomotiveScroll from 'locomotive-scroll';
 
 export default {
   name: 'App',
-  components: { Main },
+  components: { Main, Creations, Navigator },
+  methods: {
+    goCreations(){
+      let menu = document.getElementById('menu')
+      let crea = document.getElementById('crea')
+
+      menu.style.display = "none"
+      crea.style.display = "block"
+
+      setTimeout(() => {
+        scroll.update()
+      }, 1000)
+    },
+    goMain(){
+      let menu = document.getElementById('menu')
+      let crea = document.getElementById('crea')
+
+      menu.style.display = "block"
+      crea.style.display = "none"
+
+      setTimeout(() => {
+        scroll.update()
+      }, 1000)
+    }
+  },
   mounted() {
     let scroll = new LocomotiveScroll({
     el: document.querySelector('[data-scroll-container]'),
@@ -55,5 +84,9 @@ body
 {
   position: relative;
   overflow: hidden;
+}
+#crea
+{
+  display: none;
 }
 </style>

@@ -21,6 +21,9 @@
       <div id="clapHolder" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
         <img :src="require('../assets/images/clap.jpg')" alt="bread" class="floatingImage">
       </div>
+      <h2 id="subTitle" data-scroll data-scroll-speed="-4" data-scroll-direction="horizontal">
+        Venez découvrir nos saveurs artisanales
+      </h2>
     </div>
   </div>
 </template>
@@ -31,9 +34,6 @@ export default {
   mounted(){
     let images = document.querySelectorAll('.parts div')
     for (let img of images){
-      img.dataset.x = 0
-      img.dataset.y = 0
-
       img.addEventListener('mousedown', () => {
         pickUp(img)
       })
@@ -46,19 +46,15 @@ export default {
       img.addEventListener('mousemove', event => {
         if (img.dataset.holded == "in"){
           let rect = img.getBoundingClientRect()
-          img.dataset.x = parseInt(img.dataset.x) + (((rect.left + event.offsetX) - rect.width/2) /10)
-          img.dataset.y = parseInt(img.dataset.y) + ((event.offsetY - rect.height/2) /10)
 
-          //img.style.transform = `translate(${img.dataset.x}px, ${img.dataset.y}px) scale(1.2)`
-          img.style.left = `${rect.left + (event.offsetX - rect.width/2)}px`
-          img.style.top = `${rect.top + (event.offsetY - rect.height/2)}px`
+          img.style.left = `${img.offsetLeft + (event.offsetX - rect.width/2)}px`
+          img.style.top = `${img.offsetTop  + (event.offsetY - rect.height/2)}px`
         }
       })
     }
 
     function pickUp(item){
       item.dataset.holded = "in"
-      //item.style.transform = `translate(${item.dataset.x}px, ${item.dataset.y}px) scale(1.2)`
 
       let child = item.children[0]
       child.style.boxShadow = "-10px 10px 50px #1a1a1a"
@@ -66,7 +62,6 @@ export default {
 
     function drop(item){
       item.dataset.holded = "out"
-      //item.style.transform = `translate(${item.dataset.x}px, ${item.dataset.y}px) scale(1)`
 
       let child = item.children[0]
       child.style.boxShadow = "-10px 10px 20px #1a1a1a"
@@ -142,6 +137,17 @@ export default {
   font-size: 15vw;
   margin: 0;
   text-shadow: -10px 10px 20px rgb(26, 26, 26, 0.5);
+  pointer-events: none;
+}
+#subTitle
+{
+  position: absolute;
+  top: 50vh;
+
+  text-shadow: -5px 5px 10px rgb(26, 26, 26, 0.5);
+  font-size: 4vw;
+  margin: 0;
+  z-index: 4;
   pointer-events: none;
 }
 #shopHolder
