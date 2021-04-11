@@ -7,12 +7,20 @@
       </span>
     </div>
     <div id="panel">
-      <p @click="goMain" id="mainButton">
-        Menu Principal
-      </p>
-      <p @click="goCreations" id="creationButton">
-        Créations
-      </p>
+      <div class="textHolder">
+        <p @click="goMain" id="mainButton">
+          Menu Principal
+        </p>
+        <div class="textLine" id="mainDecoration">
+        </div>
+      </div>
+      <div class="textHolder">
+        <p @click="goCreations" id="creationButton">
+          Créations
+        </p>
+        <div class="textLine" id="creationDecoration">
+        </div>
+      </div>
     </div>
     <div id="transitionScreen">
     </div>
@@ -43,14 +51,24 @@ export default {
       if (this.isPanelOpen) {
         this.isPanelOpen = false
         panel.style.transform = "translateY(-100vh)"
+        panel.style.clipPath = "polygon(0 0, 100% 0%, 100% 0, 0% 100%)"
+
         lineTop.style.transform = ""
         lineBottom.style.transform = ""
+        
+        lineTop.style.backgroundColor = "#c9c9c9"
+        lineBottom.style.backgroundColor = "#c9c9c9"
       }
       else{        
         this.isPanelOpen = true
         panel.style.transform = "translateY(0vh)"
-        lineTop.style.transform = "rotate(45deg) translate(19%, 125%)"
-        lineBottom.style.transform = "rotate(-45deg) translate(19%, -125%)"
+        panel.style.clipPath = "polygon(0 0, 100% 0%, 100% 78%, 0% 100%)"
+
+        lineTop.style.transform = "rotate(45deg) translate(15%, 110%)"
+        lineBottom.style.transform = "rotate(-45deg) translate(15%, -110%)"
+
+        lineTop.style.backgroundColor = "#262626"
+        lineBottom.style.backgroundColor = "#262626"
       }
     },
     goMain(event){
@@ -64,7 +82,6 @@ export default {
         let yPercent = y / (window.innerHeight / 100)
 
         transitionScreen.style.clipPath = `circle(0% at ${xPercent}% ${yPercent}%)`
-        console.log(xPercent, yPercent);
 
         setTimeout(() => {
           transitionScreen.style.transitionDuration = "1000ms"
@@ -87,7 +104,6 @@ export default {
         let yPercent = y / (window.innerHeight / 100)
 
         transitionScreen.style.clipPath = `circle(0% at ${xPercent}% ${yPercent}%)`
-        console.log(xPercent, yPercent);
 
         setTimeout(() => {
           transitionScreen.style.transitionDuration = "1000ms"
@@ -98,7 +114,18 @@ export default {
           }, 1000)
         }, 100)
       }
-    },
+    }
+  },
+  mounted(){
+    let mainDecoration = document.getElementById('mainDecoration')
+    let creationDecoration = document.getElementById('creationDecoration')
+
+    if (this.isMainPage){
+      creationDecoration.style.display = "none"
+    }
+    else{
+      mainDecoration.style.display = "none"
+    }
   } 
 }
 </script>
@@ -108,12 +135,10 @@ export default {
 #button
 {  
   position: fixed;
-  background-color: #c9c9c9;
   height: 6vh;
   width: 6vh;
   border-radius: 50%;
   margin: 2vw;
-  border: 2px solid #1a1a1a;
   cursor: pointer;
   z-index: 3;
 
@@ -129,9 +154,9 @@ export default {
   width: 100vw;
   height: 80vh;
   transform: translateY(-100vh);
-  transition-duration: 500ms;
-  clip-path: polygon(0 0, 100% 0%, 100% 78%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, 100% 0, 0% 100%);
   transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
   z-index: 2;
 
   display: flex;
@@ -143,7 +168,6 @@ export default {
 }
 #panel p
 {
-  margin: 5vh 10vw;
   transition-duration: 500ms;
   cursor: pointer;
 }
@@ -151,17 +175,45 @@ export default {
 {
   height: 10%;
   width: 70%;
-  background-color: #262626;
+  background-color: #c9c9c9;
   border-radius: 10px;
   transition-duration: 500ms;
+  border: 1px solid #1a1a1a;
 }
 #transitionScreen
 {
   position: fixed;
-  background-color: #b1b1b1;
+  background-color: #c9c9c9;
   height: 100vh;
   width: 100vw;
   z-index: 4;
   clip-path: circle(0% at 0 0);
+}
+.textHolder
+{
+  margin-left: 20vw;
+  display: grid;
+  align-items: center;
+  justify-content: flex-start;
+}
+.textHolder div,
+.textHolder p
+{
+  grid-column: 1;
+  grid-row: 1;
+}
+.textLine
+{
+  height: 0.5vh;
+  width: 100%;
+  background-color: #1a1a1a;
+}
+#mainDecoration
+{
+  transform: rotate(2deg);
+}
+#creationDecoration
+{
+  transform: rotate(-2.5deg);
 }
 </style>
