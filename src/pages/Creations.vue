@@ -2,14 +2,60 @@
   <div data-scroll-container id="creation">
     <Unwrap ref="unwrapref"/>
     <Navigator :isMainPage="false"/>
-    <div data-scroll-section>
-      <div v-for="item of itemList" :key="item.name" class="creationStack">
-        <div class="imageHolder">
-          <img :src="item.url" :alt="item.name">
+    <div id="columnsHolder">
+      <div class="parts">
+        <div v-for="item of itemList1" :key="item.name">
+          <div class="imageHolder">
+            <img :src="item.url" :alt="item.name">
+          </div>
+          <div class="titleSlider">        
+            <p class="infiniteSlideP1">
+              <template v-for="i in wordNumber" :key="i" >
+                {{ item.name }}&nbsp;
+              </template>
+            </p>
+            <p class="infiniteSlideP2">
+              <template v-for="i in wordNumber" :key="i" >
+                {{ item.name }}&nbsp;
+              </template>
+            </p>
+          </div>
         </div>
-        <p class="creationTitle">
-          {{ item.name }}
-        </p>
+      </div>
+      <div id="textLine">
+          <div id="textLine1">    
+            <template v-for="i in wordNumber" :key="i" >        
+              <p v-for="i in 'Creation'" :key="i">
+                {{ i }}
+              </p>
+            </template>
+          </div>
+          <div id="textLine2">
+            <template v-for="i in wordNumber" :key="i" >  
+              <p v-for="i in 'Creation'" :key="i">
+                {{ i }}
+              </p>
+            </template>
+          </div>
+      </div>
+      <div class="parts" id="part2">
+        <div v-for="item of itemList2" :key="item.name">
+          <div class="imageHolder">
+            <img :src="item.url" :alt="item.name">
+          </div>
+          <div class="titleSlider">        
+            <p class="infiniteSlideP1">
+              <template v-for="i in wordNumber" :key="i" >
+                {{ item.name }}&nbsp;
+              </template>
+            </p>
+            <p class="infiniteSlideP2">
+              <template v-for="i in wordNumber" :key="i" >
+                &nbsp;{{ item.name }}&nbsp;
+              </template>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -25,7 +71,8 @@ export default {
   components: { Navigator, Unwrap },
   data(){
     return {
-      itemList: [
+      wordNumber: 10,
+      itemList1: [
         {
           name: "Baguette",
           url: require('../assets/creations/bread.jpg')
@@ -37,7 +84,9 @@ export default {
         {
           name: "Cupcake",
           url: require('../assets/creations/cupcake.jpg')
-        },
+        }
+      ],
+      itemList2: [
         {
           name: "Pancake",
           url: require('../assets/creations/pancake.jpg')
@@ -49,8 +98,14 @@ export default {
         {
           name: "Brioche Canelle",
           url: require('../assets/creations/briocheCanelle.jpg')
-        },
+        }
       ]
+    }
+  },
+  methods: {
+    updateInterface(){
+      let totalHeight = document.getElementById('creation').getBoundingClientRect().height
+      document.getElementById('textLine').style.height = `${totalHeight}px`
     }
   },
   mounted(){
@@ -59,21 +114,35 @@ export default {
     setTimeout(() => {
       this.$refs.unwrapref.open()
       scroll.update()
+
+      this.updateInterface()
     }, 1000)
 
-    let creationStack = document.getElementsByClassName('imageHolder')
-    let isLeft = true
-    for (let creation of creationStack){
-      if (isLeft){
-        isLeft = false
-        creation.classList.add('leftCrea')
-      }
-      else{
-        isLeft = true
-        creation.classList.add('rightCrea')
-      }
-      
+    // Creation title loop
+    let textLine1 = document.getElementById('textLine1')
+    let textLine2 = document.getElementById('textLine2')
+
+    textLine1.style.setProperty('--loop', this.$style["loop"])
+    textLine2.style.setProperty('--loop', this.$style["loop"])
+
+    setTimeout(() => {      
+      textLine2.style.opacity = "1"
+    }, 2500)
+
+    // Items title loop
+    let stack1 = document.getElementsByClassName('infiniteSlideP1')
+    let stack2 = document.getElementsByClassName('infiniteSlideP2')
+    
+    for (let item of stack1){
+      item.style.setProperty('--loop', this.$style["loop"])
     }
+    for (let item of stack2){
+      item.style.setProperty('--loop', this.$style["loop"])
+    }
+
+    setTimeout(() => {
+      stack2.style.opacity = "1"
+    }, 10000)
   }  
 }
 </script>
@@ -83,49 +152,97 @@ export default {
 {
   background-color: #1a1a1a
 }
-.creationTitle
+#columnsHolder
 {
-  position: absolute;;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.creationStack
+.parts
 {  
-  height: 50vw;
-  width: 100vw;  
+  width: 45vw;  
+  margin: 0;
 }
-.imageHolder
+#textLine
 {
-  height: 70vw;
-  width: 70vw;
+  height: 100vh;
+  width: 10vw; 
+  background-color: #c9c9c9;
+  font-size: 15vw;
+  color: #1a1a1a;
+  overflow: hidden;
+
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#textLine1
+{
+  grid-row: 1;
+  grid-column: 1;
+  animation: var(--loop) 5s infinite linear;
+}
+#textLine2
+{
+  grid-row: 1;
+  grid-column: 1;
+  opacity: 0;
+  animation: var(--loop) 5s infinite linear 2.5s;
+}
+#textLine1 p,
+#textLine2 p
+{
+  margin: 0;
+  line-height: 80%;
 }
 .imageHolder img
 {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition-duration: 500ms;
-  transition-timing-function: ease-in-out;
+}
+.titleSlider
+{
+  height: 10vh;
+  background-color: #c9c9c9;
+  border: 2px solid #1a1a1a;
+  display: grid;
+  overflow: hidden;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.titleSlider p
+{
+  font-size: 7vh;
+  margin: 0;
+  color: #1a1a1a;
+
+  grid-column: 1;
+  grid-row: 1;
+}
+.infiniteSlideP1
+{
+  animation: var(--loop) 25s infinite linear;
+  white-space: nowrap;
+}
+.infiniteSlideP2
+{
+  animation: var(--loop) 25s infinite linear 12.5s;
+  white-space: nowrap;
+  opacity: 0;
 }
 </style>
 
-<style>
-.leftCrea
-{
-  clip-path: polygon(100% 50%, 0 0, 0 100%);
-}
-.leftCrea:hover img
-{
-  transform: scale(1.2);
-  margin-top: -20vw;
-}
-.rightCrea
-{
-  clip-path: polygon(0 50%, 100% 0, 100% 100%);
-
-  margin: 0;
-  margin-left: auto;
-}
-.rightCrea:hover img
-{
-  transform: scale(1.2);
+<style module>
+@keyframes loop {
+  0%{
+    margin-left: -100%;
+  }
+  100%{
+    margin-left: 100%;
+  }  
 }
 </style>
