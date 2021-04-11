@@ -130,7 +130,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 #button
 {  
@@ -141,11 +140,18 @@ export default {
   margin: 2vw;
   cursor: pointer;
   z-index: 3;
+  border: 1px solid transparent;
+  transition-duration: 500ms;
 
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
+}
+#button:hover
+{
+  background-color: #c9c9c9;
+  border: 1px solid #1a1a1a;
 }
 #panel
 {
@@ -202,11 +208,24 @@ export default {
   grid-column: 1;
   grid-row: 1;
 }
+.textHolder:hover .textLine
+{
+  height: 0.8vh;
+}
+.textHolder:hover #mainDecoration
+{
+  transform: rotate(0deg);
+}
+.textHolder:hover #creationDecoration
+{
+  transform: rotate(0deg);
+}
 .textLine
 {
   height: 0.5vh;
   width: 100%;
   background-color: #1a1a1a;
+  transition-duration: 500ms;
 }
 #mainDecoration
 {

@@ -11,7 +11,7 @@
           </p>
         </div>
         <div class="faceImage">
-          <img :src="require('../assets/images/p1.png')">
+          <img :src="require('../assets/images/p1.png')" @load="newLoad">
         </div>
       </div>
       <div class="backp1">        
@@ -20,7 +20,7 @@
     <div class="holder">
       <div class="characterHolder" id="ch2" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
         <div id="p2Img" class="faceImage">
-          <img :src="require('../assets/images/p2.png')">
+          <img :src="require('../assets/images/p2.png')" @load="newLoad">
         </div>
         <div id="p2Text">
           <h2 class="name">
@@ -45,7 +45,7 @@
           </p>
         </div>
         <div id="p3Img" class="faceImage">
-          <img :src="require('../assets/images/p3.png')">
+          <img :src="require('../assets/images/p3.png')" @load="newLoad">
         </div>
       </div>
       <div class="backp1">        
@@ -56,7 +56,12 @@
 
 <script>
 export default {
-  name: 'Faces'
+  name: 'Faces',
+  methods: {
+    newLoad(){
+      this.$emit('newLoad')
+    }
+  }
 }
 </script>
 

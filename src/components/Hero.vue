@@ -2,13 +2,13 @@
   <div id="hero">
     <div class="parts">
       <div id="breadHolder" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/bread.jpg')" alt="bread" class="floatingImage">
+        <img :src="require('../assets/images/bread.jpg')" alt="bread" class="floatingImage" @load="newLoad">
       </div>
       <div id="tableHolder" data-scroll data-scroll-speed="1" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/table.jpg')" alt="bread" class="floatingImage">
+        <img :src="require('../assets/images/table.jpg')" alt="bread" class="floatingImage" @load="newLoad">
       </div>
       <div id="pieHolder" data-scroll data-scroll-speed="-1" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/pie.jpg')" alt="bread" class="floatingImage">
+        <img :src="require('../assets/images/pie.jpg')" alt="bread" class="floatingImage" @load="newLoad">
       </div>
       <h1 id="mainTitle" data-scroll data-scroll-speed="4" data-scroll-direction="horizontal">
         Boulangerie
@@ -16,10 +16,10 @@
     </div>
     <div class="parts" id="part2">
       <div id="shopHolder" data-scroll data-scroll-speed="-1" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/shop.jpg')" alt="bread" class="floatingImage">
+        <img :src="require('../assets/images/shop.jpg')" alt="bread" class="floatingImage" @load="newLoad">
       </div>
       <div id="clapHolder" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
-        <img :src="require('../assets/images/clap.jpg')" alt="bread" class="floatingImage">
+        <img :src="require('../assets/images/clap.jpg')" alt="bread" class="floatingImage" @load="newLoad">
       </div>
       <h2 id="subTitle" data-scroll data-scroll-speed="-4" data-scroll-direction="horizontal">
         Venez découvrir nos saveurs artisanales
@@ -31,14 +31,16 @@
 <script>
 export default {
   name: 'Hero',
+  methods: {
+    newLoad(){
+      this.$emit('newLoad')
+    }
+  },
   mounted(){
     let images = document.querySelectorAll('.parts div')
     for (let img of images){
-      img.addEventListener('mousedown', () => {
+      img.addEventListener('mouseenter', () => {
         pickUp(img)
-      })
-      img.addEventListener('mouseup', () => {
-        drop(img)
       })
       img.addEventListener('mouseleave', () => {
         drop(img)
@@ -65,6 +67,8 @@ export default {
 
       let child = item.children[0]
       child.style.boxShadow = "-10px 10px 20px #1a1a1a"
+      item.style.left = `${item.offsetLeft}px`
+      item.style.top = `${item.offsetTop}px`
     }
   }
 }
@@ -99,10 +103,8 @@ export default {
 .parts div
 {  
   position: absolute;
-  transition-duration: 300ms;
+  transition-duration: 5000ms;
   transition-timing-function: ease-out;
-  cursor: pointer;
-  perspective: 300px;
 }
 /* Bread */
 #breadHolder

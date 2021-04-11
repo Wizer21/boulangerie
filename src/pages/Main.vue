@@ -2,8 +2,8 @@
   <div id="menu" data-scroll-container>
     <Unwrap ref="unwrapref"/>
     <Navigator :isMainPage="true" />
-    <Hero data-scroll-section />
-    <Faces data-scroll-section />
+    <Hero data-scroll-section @newLoad="newLoad"/>
+    <Faces data-scroll-section @newLoad="newLoad" />
     <Ratings data-scroll-section />
     <Footer data-scroll-section />
   </div>
@@ -22,13 +22,24 @@ import setupScroll from '../assets/locomotiveSetup.js'
 export default {
   name: 'Main',
   components: { Hero, Faces, Ratings, Footer, Navigator, Unwrap },
-  mounted(){    
-    let scroll = setupScroll()
+  data(){
+    return {
+      scroll: null,
+      loadStack: 0
+    }
+  },
+  methods: {
+    newLoad(){
+      this.loadStack += 1
 
-    setTimeout(() => {
-      scroll.update()
-      this.$refs.unwrapref.open()
-    }, 1000)
+      if(this.loadStack >= 8){
+        this.scroll.update()
+        this.$refs.unwrapref.open()
+      }
+    },
+  },
+  mounted(){    
+    this.scroll = setupScroll()
   }
 }
 </script>

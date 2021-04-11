@@ -1,6 +1,6 @@
 <template>
   <div id="ratings">
-    <div class="rate left" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
+    <div class="rate left">
       <h2>
         Bob
       </h2>
@@ -8,7 +8,7 @@
         Quel voyage temporel, c'est fabuleux !
       </p>
     </div>
-    <div class="rate right" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
+    <div class="rate right">
       <h2>
         Marie
       </h2>
@@ -16,7 +16,7 @@
         Leurs travail est une véritable péptite! Je recommande!
       </p>
     </div>
-    <div class="rate left" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
+    <div class="rate left">
       <h2>
         Mario
       </h2>
@@ -62,7 +62,7 @@ export default {
 }
 .rate p
 {
-  font-size: 3vw;
+  font-size: 2vw;
   margin: 0;
   margin: 0 7vw;
   padding: 1vw;
