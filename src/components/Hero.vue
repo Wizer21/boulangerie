@@ -74,7 +74,6 @@ export default {
 #hero
 {
   width: 100vw;
-  background-color: #262626;
 }
 .parts
 {

@@ -38,7 +38,7 @@ export default {
 {
   width: 100vw;
   height: 100vh;
-  background-color: #262626; 
+  margin-top: 50vh;
 }
 .rate
 {

@@ -64,7 +64,6 @@ export default {
 #faces
 {
   width: 100vw;
-  background-color: #1a1a1a;
 }
 .holder
 {

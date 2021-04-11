@@ -19,7 +19,6 @@ export default {
 #footer
 {
   height: 100vh;
-  background-color: #262626;
   display: flex;
   flex-direction: column;
   align-items: center;

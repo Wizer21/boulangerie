@@ -7,12 +7,14 @@
       </span>
     </div>
     <div id="panel">
-      <p @click="goMain">
+      <p @click="goMain" id="mainButton">
         Menu Principal
       </p>
-      <p @click="goCreations">
+      <p @click="goCreations" id="creationButton">
         Créations
       </p>
+    </div>
+    <div id="transitionScreen">
     </div>
   </div>
 </template>
@@ -20,14 +22,20 @@
 <script>
 export default {
   name: "Navigator",
+  props: {
+    isMainPage: {
+      type: Boolean,
+      required: true
+    }
+  },
   data(){
     return{
       isPanelOpen: false,
-      isMenuOpen: true
     }
   },
   methods: {
     togglePanel(){
+      console.log("toggle");
       let panel = document.getElementById('panel')
       let lineTop = document.getElementById('lineTop')
       let lineBottom = document.getElementById('lineBottom')
@@ -41,24 +49,54 @@ export default {
       else{        
         this.isPanelOpen = true
         panel.style.transform = "translateY(0vh)"
-        lineTop.style.transform = "rotate(45deg) translate(0.4vw, 0.35vw)"
-        lineBottom.style.transform = "rotate(-45deg) translate(0.4vw, -0.35vw)"
+        lineTop.style.transform = "rotate(45deg) translate(19%, 125%)"
+        lineBottom.style.transform = "rotate(-45deg) translate(19%, -125%)"
       }
     },
-    goMain(){
-      if (!this.isMenuOpen){
-        this.isMenuOpen = true
+    goMain(event){
+      if (!this.isMainPage){
+        let mainButton = document.getElementById('mainButton')
+        let transitionScreen = document.getElementById('transitionScreen')
+        let x = event.offsetX + mainButton.offsetLeft
+        let y = event.offsetY + mainButton.offsetTop
 
-        this.$emit('goMain')
-        this.togglePanel()
+        let xPercent = x / (window.innerWidth / 100)
+        let yPercent = y / (window.innerHeight / 100)
+
+        transitionScreen.style.clipPath = `circle(0% at ${xPercent}% ${yPercent}%)`
+        console.log(xPercent, yPercent);
+
+        setTimeout(() => {
+          transitionScreen.style.transitionDuration = "1000ms"
+          transitionScreen.style.clipPath = `circle(150% at ${xPercent}% ${yPercent}%)`
+
+          setTimeout(() => {
+            window.location.assign('/')
+          }, 1000)
+        }, 100)
       }
     },
-    goCreations(){
-      if (this.isMenuOpen){
-        this.isMenuOpen = false
-        
-        this.$emit('goCreations')
-        this.togglePanel()
+    goCreations(event){
+      if (this.isMainPage){
+        let creationButton = document.getElementById('creationButton')
+        let transitionScreen = document.getElementById('transitionScreen')
+        let x = event.offsetX + creationButton.offsetLeft
+        let y = event.offsetY + creationButton.offsetTop
+
+        let xPercent = x / (window.innerWidth / 100)
+        let yPercent = y / (window.innerHeight / 100)
+
+        transitionScreen.style.clipPath = `circle(0% at ${xPercent}% ${yPercent}%)`
+        console.log(xPercent, yPercent);
+
+        setTimeout(() => {
+          transitionScreen.style.transitionDuration = "1000ms"
+          transitionScreen.style.clipPath = `circle(150% at ${xPercent}% ${yPercent}%)`
+
+          setTimeout(() => {
+            window.location.assign('/creations')
+          }, 1000)
+        }, 100)
       }
     },
   } 
@@ -69,13 +107,7 @@ export default {
 <style scoped>
 #button
 {  
-  /* Stuck it */
   position: fixed;
-  top: 0px;
-  left: 0px;
-  display: flex;
-
-  /* Style */
   background-color: #c9c9c9;
   height: 6vh;
   width: 6vh;
@@ -83,7 +115,7 @@ export default {
   margin: 2vw;
   border: 2px solid #1a1a1a;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
 
   display: flex;
   align-items: center;
@@ -92,13 +124,7 @@ export default {
 }
 #panel
 {
-  /* Stuck it */
   position: fixed;
-  top: 0px;
-  left: 0px;
-  display: flex;
-
-  /* Style */
   background-color: #c9c9c9;
   width: 100vw;
   height: 80vh;
@@ -106,6 +132,7 @@ export default {
   transition-duration: 500ms;
   clip-path: polygon(0 0, 100% 0%, 100% 78%, 0% 100%);
   transition-timing-function: ease-in-out;
+  z-index: 2;
 
   display: flex;
   align-content: center;
@@ -122,18 +149,19 @@ export default {
 }
 .line
 {
-  height: 0.3vw;
-  width: 2vw;
+  height: 10%;
+  width: 70%;
   background-color: #262626;
   border-radius: 10px;
   transition-duration: 500ms;
 }
-/* #lineTop
+#transitionScreen
 {
-  transform: rotate(45deg) translate(0.4vw, 0.35vw);
+  position: fixed;
+  background-color: #b1b1b1;
+  height: 100vh;
+  width: 100vw;
+  z-index: 4;
+  clip-path: circle(0% at 0 0);
 }
-#lineBottom
-{
-  transform: rotate(-45deg) translate(0.4vw, -0.35vw);
-} */
 </style>
