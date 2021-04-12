@@ -150,7 +150,6 @@ export default {
   margin: 0;
   z-index: 4;
   pointer-events: none;
-  mix-blend-mode: difference;
 }
 #shopHolder
 {

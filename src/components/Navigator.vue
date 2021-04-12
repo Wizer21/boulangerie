@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     togglePanel(){
-      console.log("toggle");
       let panel = document.getElementById('panel')
       let lineTop = document.getElementById('lineTop')
       let lineBottom = document.getElementById('lineBottom')
@@ -64,8 +63,8 @@ export default {
         panel.style.transform = "translateY(0vh)"
         panel.style.clipPath = "polygon(0 0, 100% 0%, 100% 78%, 0% 100%)"
 
-        lineTop.style.transform = "rotate(45deg) translate(15%, 110%)"
-        lineBottom.style.transform = "rotate(-45deg) translate(15%, -110%)"
+        lineTop.style.transform = "rotate(45deg) translate(18%, 95%)"
+        lineBottom.style.transform = "rotate(-45deg) translate(18%, -95%)"
 
         lineTop.style.backgroundColor = "#262626"
         lineBottom.style.backgroundColor = "#262626"
@@ -171,7 +170,6 @@ export default {
   flex-direction: column;
   color: #262626;
   font-size: 5vw;
-  box-shadow: 0 0 10px #1a1a1a;
 }
 #panel p
 {
@@ -208,6 +206,7 @@ export default {
 {
   grid-column: 1;
   grid-row: 1;
+  transition-duration: 500ms;
 }
 .textHolder:hover .textLine
 {
@@ -220,6 +219,10 @@ export default {
 .textHolder:hover #creationDecoration
 {
   transform: rotate(0deg);
+}
+.textHolder:hover p
+{
+  text-shadow: 0 0 5px #1a1a1a;
 }
 .textLine
 {
@@ -236,6 +239,14 @@ export default {
 {
   transform: rotate(-2.5deg);
 }
+/* #lineTop
+{
+  transform: rotate(45deg) translate(18%, 95%);
+}
+#lineBottom
+{
+  transform: rotate(-45deg) translate(18%, -95%);
+} */
 @media screen and (max-width: 1000px) {
   
   #panel

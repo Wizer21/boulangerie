@@ -83,6 +83,10 @@ export default {
         {
           name: "Cupcake",
           url: require('../assets/creations/cupcake.jpg')
+        },
+        {
+          name: "Macaron",
+          url: require('../assets/creations/macaron.jpg')
         }
       ],
       itemList2: [
@@ -105,7 +109,7 @@ export default {
     newLoad(){
       this.loadCount ++
 
-      if (this.loadCount >= 6){
+      if (this.loadCount >= 7){
         this.$refs.unwrapref.open()
         this.scroll.update()
       }
