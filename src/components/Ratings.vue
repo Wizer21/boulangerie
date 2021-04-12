@@ -13,7 +13,7 @@
         Marie
       </h2>
       <p>
-        Leurs travail est une véritable péptite! Je recommande!
+        Leur travail est une véritable péptite ! Je recommande !
       </p>
     </div>
     <div class="rate left">
@@ -21,7 +21,7 @@
         Mario
       </h2>
       <p>
-        C'est moi! Mario.
+        C'est moi ! Mario.
       </p>
     </div>
   </div>

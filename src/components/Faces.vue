@@ -178,6 +178,7 @@ export default {
   position: relative;
   z-index: 3;
   margin-top: 30vh;
+  padding-bottom: 20vh;
 }
 #ch3
 {
@@ -225,6 +226,10 @@ export default {
   #backp2
   {
     height: 60vw;
+  }
+  #slide3
+  {
+    padding-bottom: 0vh;
   }
 }
 </style>

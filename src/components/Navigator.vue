@@ -55,8 +55,8 @@ export default {
         lineTop.style.transform = ""
         lineBottom.style.transform = ""
         
-        lineTop.style.backgroundColor = "#c9c9c9"
-        lineBottom.style.backgroundColor = "#c9c9c9"
+        lineTop.style.backgroundColor = ""
+        lineBottom.style.backgroundColor = ""
       }
       else{        
         this.isPanelOpen = true
@@ -151,6 +151,11 @@ export default {
 {
   background-color: #c9c9c9;
   border: 1px solid #1a1a1a;
+}
+#button:hover #lineBottom,
+#button:hover #lineTop
+{
+  background-color: #1a1a1a;
 }
 #panel
 {
