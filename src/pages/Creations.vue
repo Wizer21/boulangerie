@@ -5,12 +5,12 @@
     <div id="textLine">
       <div id="textLine1">    
         <template v-for="i in midWordNumber" :key="i" >        
-          Creation
+          Creations
         </template>
       </div>
       <div id="textLine2">
         <template v-for="i in midWordNumber" :key="i" >  
-          Creation
+          Creations
         </template>
       </div>
     </div>
@@ -68,8 +68,8 @@ export default {
   data(){
     return {
       scroll: null,
-      wordNumber: 10,
-      midWordNumber: 50,
+      wordNumber: 5,
+      midWordNumber: 40,
       loadCount: 0,
       itemList1: [
         {
@@ -140,7 +140,27 @@ export default {
       for (let item of stack2){
         item.style.opacity = "1"
       }
-    }, 20000)
+    }, 10000)
+
+    let imageStack = document.querySelectorAll('.imageHolder img')
+    for (let image of imageStack){
+      image.addEventListener('mousemove', event => {
+        let rect = image.getBoundingClientRect()
+        let x = event.offsetX - (rect.width / 2)
+        let y = event.offsetY - (rect.height / 2)
+
+        let ratioX = rect.width / (rect.width/10)
+        let ratioY = rect.height / (rect.height/10)
+
+        x = x / ratioX
+        y = y / ratioY
+
+        image.style.transform = `translate(${-x}px, ${-y}px) scale(1.1)`
+      })
+      image.addEventListener('mouseleave', () => {        
+        image.style.transform = ""
+      })
+    }
   }  
 }
 </script>
@@ -169,12 +189,12 @@ export default {
 #textLine
 { 
   position: fixed;
-  height: 100vh;
+  height: 110vh;
+  top: -5vh;
   width: 20vw; 
-  background-color: #c9c9c9;
   font-size: 5vw;
+  background-color: #c9c9c9;
   color: #1a1a1a;
-  overflow: hidden;
   margin-left: 40vw;
   transform: rotate(3deg);
 
@@ -206,12 +226,16 @@ export default {
 {
   line-height: 0px;
   min-height: 0;
+  overflow: hidden;
 }
 .imageHolder img
 {
   object-fit: cover;
   height: 100%;
   width: 100%;
+
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
 }
 .titleSlider
 {
@@ -235,12 +259,12 @@ export default {
 }
 .infiniteSlideP1
 {
-  animation: var(--loop) 40s infinite linear;
+  animation: var(--loop) 20s infinite linear;
   white-space: nowrap;
 }
 .infiniteSlideP2
 {
-  animation: var(--loop) 40s infinite linear 20s;
+  animation: var(--loop) 20s infinite linear 10s;
   white-space: nowrap;
   opacity: 0;
 }

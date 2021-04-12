@@ -1,6 +1,6 @@
 <template>
   <div id="faces">  
-    <div class="holder">
+    <div class="holder" id="slide1">
       <div class="characterHolder" id="ch1" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
         <div class="p1Text">
           <h2 class="name">
@@ -17,7 +17,7 @@
       <div class="backp1">        
       </div>
     </div>
-    <div class="holder">
+    <div class="holder" id="slide2">
       <div class="characterHolder" id="ch2" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
         <div id="p2Img" class="faceImage">
           <img :src="require('../assets/images/p2.png')" @load="newLoad">
@@ -34,7 +34,7 @@
       <div id="backp2">        
       </div>
     </div>
-    <div class="holder" id="p3">
+    <div class="holder" id="slide3">
       <div class="characterHolder" id="ch3" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
         <div class="p1Text" >
           <h2 class="name">
@@ -163,8 +163,20 @@ export default {
   z-index: -1;
 }
 /* p3 */
-#p3
+#slide1
 {
+  position: relative;
+  z-index: 1;
+}
+#slide2
+{
+  position: relative;
+  z-index: 2;
+}
+#slide3
+{
+  position: relative;
+  z-index: 3;
   margin-top: 30vh;
 }
 #ch3
@@ -173,6 +185,19 @@ export default {
 }
 
 @media screen and (max-width: 1000px) {  
+  .faceImage
+  {
+    width: 50vw;
+    height: 50vw;
+  }
+  .name
+  {
+    font-size: 9vw;
+  }
+  .subTitles
+  {
+    font-size: 5vw;
+  }
   #ch1
   {
     margin-top: 15vh;

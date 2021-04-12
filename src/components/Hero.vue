@@ -150,6 +150,7 @@ export default {
   margin: 0;
   z-index: 4;
   pointer-events: none;
+  mix-blend-mode: difference;
 }
 #shopHolder
 {
@@ -165,5 +166,32 @@ export default {
   left: 55vw;
   top: 50vh;
   width: 35vw;
+}
+@media screen and (max-width: 800px) {  
+  #breadHolder
+  {
+    width: 50vw;
+  }
+  #tableHolder
+  {
+    width: 100vw;
+  }
+  #pieHolder
+  {
+    width: 30vw;
+  }
+  #shopHolder
+  {
+    top: -15vh;
+    width: 120vw;
+  }
+  #clapHolder
+  {
+    width: 60vw;
+  }
+  #subTitle
+  {
+    font-size: 6vw;
+  }
 }
 </style>

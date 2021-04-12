@@ -171,6 +171,7 @@ export default {
   flex-direction: column;
   color: #262626;
   font-size: 5vw;
+  box-shadow: 0 0 10px #1a1a1a;
 }
 #panel p
 {
@@ -234,5 +235,12 @@ export default {
 #creationDecoration
 {
   transform: rotate(-2.5deg);
+}
+@media screen and (max-width: 1000px) {
+  
+  #panel
+  {
+    font-size: 10vw;
+  }
 }
 </style>

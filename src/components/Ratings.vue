@@ -37,7 +37,6 @@ export default {
 #ratings
 {
   width: 100vw;
-  height: 100vh;
   margin-top: 50vh;
 }
 .rate
@@ -69,6 +68,16 @@ export default {
   color: #262626;
   background-color: #c9c9c9;
   border-radius: 10px;
+}
+@media screen and (max-width: 800px) {  
+  .rate p{
+    font-size: 5vw;  
+    padding: 2vw; 
+  }
+  .rate h2
+  {
+    font-size: 12vw;
+  }
 }
 </style>
  
