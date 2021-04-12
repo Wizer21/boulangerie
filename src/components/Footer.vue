@@ -30,6 +30,7 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 3vw;
+  font-family: 'Nunito', sans-serif;
 }
 #portfolioHolder
 {

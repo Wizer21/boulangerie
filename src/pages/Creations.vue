@@ -172,7 +172,7 @@ export default {
 <style scoped>
 #creation
 {
-  background-color: #1a1a1a
+  background-color: #1a1a1a;
 }
 #columnsHolder
 {
@@ -247,6 +247,7 @@ export default {
   background-color: #ededed;
   display: grid;
   overflow: hidden;
+  font-family: 'Nunito', sans-serif;
 
   flex-direction: column;
   align-items: center;

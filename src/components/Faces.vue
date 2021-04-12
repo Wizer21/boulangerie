@@ -93,6 +93,7 @@ export default {
 }
 .subTitles
 {
+  font-family: 'Nunito', sans-serif;
   font-size: 3vw;
   z-index: 2;
   margin: 0;
@@ -126,7 +127,7 @@ export default {
 }
 .p1Text h2
 {
-  margin-left: -7vw;
+  margin-left: -9vw;
 }
 .backp1
 {
@@ -148,7 +149,7 @@ export default {
 }
 #p2Text h2
 {
-  margin-left: 5vw;  
+  margin-left: 10vw;  
 }
 #p2Img
 {

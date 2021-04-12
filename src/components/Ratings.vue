@@ -68,6 +68,7 @@ export default {
   color: #262626;
   background-color: #ededed;
   border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
 }
 @media screen and (max-width: 800px) {  
   .rate p{
