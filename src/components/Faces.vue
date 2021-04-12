@@ -130,7 +130,7 @@ export default {
 }
 .backp1
 {
-  background-color: #c9c9c9;
+  background-color: #ededed;
   height: 40vw;
   width: 200vw;
   transform: rotate(20deg) translateY(10vh);  
@@ -143,7 +143,7 @@ export default {
 }
 #p2Text
 {
-  color: #c9c9c9;
+  color: #ededed;
   margin-top: 25vh;
 }
 #p2Text h2

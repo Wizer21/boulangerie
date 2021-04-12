@@ -45,7 +45,7 @@ export default {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   z-index: 5;
 
   transition-duration: 500ms;

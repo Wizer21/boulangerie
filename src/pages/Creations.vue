@@ -184,7 +184,7 @@ export default {
 {  
   width: 45vw;  
   margin: 0;
-  background-color: #c9c9c9;
+  background-color: #ededed;
 }
 #part1
 {
@@ -197,7 +197,7 @@ export default {
   top: -5vh;
   width: 20vw; 
   font-size: 5vw;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   color: #1a1a1a;
   margin-left: 40vw;
   transform: rotate(3deg);
@@ -244,7 +244,7 @@ export default {
 .titleSlider
 {
   height: 10vh;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   display: grid;
   overflow: hidden;
 

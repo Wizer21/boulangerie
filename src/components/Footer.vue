@@ -43,7 +43,7 @@ export default {
   width: 50vw;
   transform: rotate(1.5deg) translateY(6vh);
   opacity: 1;
-  box-shadow: 0 0 10px #c9c9c9; 
+  box-shadow: 0 0 10px #ededed; 
 }
 #portfolioHolder:hover #portfolio
 {
@@ -53,14 +53,14 @@ export default {
 {
   transition-duration: 500ms;
   text-decoration: none;
-  color: #c9c9c9;
+  color: #ededed;
 }
 #underline
 {
   position: absolute;
   height: 0.5vh;
   width: 0vw;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   opacity: 0;
   border-radius: 10px;
   transform: translateY(15vh);

@@ -149,7 +149,7 @@ export default {
 }
 #button:hover
 {
-  background-color: #c9c9c9;
+  background-color: #ededed;
   border: 1px solid #1a1a1a;
 }
 #button:hover #lineBottom,
@@ -160,7 +160,7 @@ export default {
 #panel
 {
   position: fixed;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   width: 100vw;
   height: 80vh;
   transform: translateY(-100vh);
@@ -185,7 +185,7 @@ export default {
 {
   height: 10%;
   width: 70%;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   border-radius: 10px;
   transition-duration: 500ms;
   border: 1px solid #1a1a1a;
@@ -193,7 +193,7 @@ export default {
 #transitionScreen
 {
   position: fixed;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   height: 100vh;
   width: 100vw;
   z-index: 4;

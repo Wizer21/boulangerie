@@ -57,7 +57,7 @@ export default {
 {
   font-size: 6vw;
   margin: 2vh 5vw;
-  color: #c9c9c9;
+  color: #ededed;
 }
 .rate p
 {
@@ -66,7 +66,7 @@ export default {
   margin: 0 7vw;
   padding: 1vw;
   color: #262626;
-  background-color: #c9c9c9;
+  background-color: #ededed;
   border-radius: 10px;
 }
 @media screen and (max-width: 800px) {  
