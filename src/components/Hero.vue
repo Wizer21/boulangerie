@@ -169,10 +169,12 @@ export default {
 @media screen and (max-width: 800px) {  
   #breadHolder
   {
+    left: 0vw;
     width: 50vw;
   }
   #tableHolder
   {
+    left: 25vw;
     width: 100vw;
   }
   #pieHolder
@@ -181,11 +183,13 @@ export default {
   }
   #shopHolder
   {
+    left: -20vw;
     top: -15vh;
     width: 120vw;
   }
   #clapHolder
   {
+    left: 30vw;
     width: 60vw;
   }
   #subTitle
