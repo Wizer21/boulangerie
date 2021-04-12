@@ -2,11 +2,23 @@
   <div data-scroll-container id="creation">
     <Unwrap ref="unwrapref"/>
     <Navigator :isMainPage="false"/>
-    <div id="columnsHolder">
-      <div class="parts">
+    <div id="textLine">
+      <div id="textLine1">    
+        <template v-for="i in midWordNumber" :key="i" >        
+          Creation
+        </template>
+      </div>
+      <div id="textLine2">
+        <template v-for="i in midWordNumber" :key="i" >  
+          Creation
+        </template>
+      </div>
+    </div>
+    <div id="columnsHolder" data-scroll-section>
+      <div class="parts" id="part1">
         <div v-for="item of itemList1" :key="item.name">
           <div class="imageHolder">
-            <img :src="item.url" :alt="item.name">
+            <img :src="item.url" :alt="item.name" @load="newLoad">
           </div>
           <div class="titleSlider">        
             <p class="infiniteSlideP1">
@@ -22,26 +34,10 @@
           </div>
         </div>
       </div>
-      <div id="textLine">
-          <div id="textLine1">    
-            <template v-for="i in wordNumber" :key="i" >        
-              <p v-for="i in 'Creation'" :key="i">
-                {{ i }}
-              </p>
-            </template>
-          </div>
-          <div id="textLine2">
-            <template v-for="i in wordNumber" :key="i" >  
-              <p v-for="i in 'Creation'" :key="i">
-                {{ i }}
-              </p>
-            </template>
-          </div>
-      </div>
       <div class="parts" id="part2">
         <div v-for="item of itemList2" :key="item.name">
           <div class="imageHolder">
-            <img :src="item.url" :alt="item.name">
+            <img :src="item.url" :alt="item.name" @load="newLoad">
           </div>
           <div class="titleSlider">        
             <p class="infiniteSlideP1">
@@ -71,7 +67,10 @@ export default {
   components: { Navigator, Unwrap },
   data(){
     return {
+      scroll: null,
       wordNumber: 10,
+      midWordNumber: 50,
+      loadCount: 0,
       itemList1: [
         {
           name: "Baguette",
@@ -103,27 +102,24 @@ export default {
     }
   },
   methods: {
-    updateInterface(){
-      let totalHeight = document.getElementById('creation').getBoundingClientRect().height
-      document.getElementById('textLine').style.height = `${totalHeight}px`
+    newLoad(){
+      this.loadCount ++
+
+      if (this.loadCount >= 6){
+        this.$refs.unwrapref.open()
+        this.scroll.update()
+      }
     }
   },
   mounted(){
-    let scroll = setupScroll()
-
-    setTimeout(() => {
-      this.$refs.unwrapref.open()
-      scroll.update()
-
-      this.updateInterface()
-    }, 1000)
+    this.scroll = setupScroll()
 
     // Creation title loop
     let textLine1 = document.getElementById('textLine1')
     let textLine2 = document.getElementById('textLine2')
 
-    textLine1.style.setProperty('--loop', this.$style["loop"])
-    textLine2.style.setProperty('--loop', this.$style["loop"])
+    textLine1.style.setProperty('--antiLoop', this.$style["antiLoop"])
+    textLine2.style.setProperty('--antiLoop', this.$style["antiLoop"])
 
     setTimeout(() => {      
       textLine2.style.opacity = "1"
@@ -141,8 +137,10 @@ export default {
     }
 
     setTimeout(() => {
-      stack2.style.opacity = "1"
-    }, 10000)
+      for (let item of stack2){
+        item.style.opacity = "1"
+      }
+    }, 20000)
   }  
 }
 </script>
@@ -162,15 +160,23 @@ export default {
 {  
   width: 45vw;  
   margin: 0;
+  background-color: #c9c9c9;
+}
+#part1
+{
+  margin-right: 10vw;
 }
 #textLine
-{
+{ 
+  position: fixed;
   height: 100vh;
-  width: 10vw; 
+  width: 20vw; 
   background-color: #c9c9c9;
-  font-size: 15vw;
+  font-size: 5vw;
   color: #1a1a1a;
   overflow: hidden;
+  margin-left: 40vw;
+  transform: rotate(3deg);
 
   display: grid;
   flex-direction: column;
@@ -181,14 +187,14 @@ export default {
 {
   grid-row: 1;
   grid-column: 1;
-  animation: var(--loop) 5s infinite linear;
+  animation: var(--antiLoop) 5s infinite linear;
 }
 #textLine2
 {
   grid-row: 1;
   grid-column: 1;
   opacity: 0;
-  animation: var(--loop) 5s infinite linear 2.5s;
+  animation: var(--antiLoop) 5s infinite linear 2.5s;
 }
 #textLine1 p,
 #textLine2 p
@@ -196,17 +202,21 @@ export default {
   margin: 0;
   line-height: 80%;
 }
+.imageHolder
+{
+  line-height: 0px;
+  min-height: 0;
+}
 .imageHolder img
 {
+  object-fit: cover;
   height: 100%;
   width: 100%;
-  object-fit: cover;
 }
 .titleSlider
 {
   height: 10vh;
   background-color: #c9c9c9;
-  border: 2px solid #1a1a1a;
   display: grid;
   overflow: hidden;
 
@@ -216,7 +226,7 @@ export default {
 }
 .titleSlider p
 {
-  font-size: 7vh;
+  font-size: 5vh;
   margin: 0;
   color: #1a1a1a;
 
@@ -225,14 +235,24 @@ export default {
 }
 .infiniteSlideP1
 {
-  animation: var(--loop) 25s infinite linear;
+  animation: var(--loop) 40s infinite linear;
   white-space: nowrap;
 }
 .infiniteSlideP2
 {
-  animation: var(--loop) 25s infinite linear 12.5s;
+  animation: var(--loop) 40s infinite linear 20s;
   white-space: nowrap;
   opacity: 0;
+}
+@media screen and (max-width: 1000px) {  
+  .parts
+  {  
+    width: 90vw;  
+  }
+  #textLine
+  { 
+    margin-left: 85vw;
+  }
 }
 </style>
 
@@ -243,6 +263,14 @@ export default {
   }
   100%{
     margin-left: 100%;
+  }  
+}
+@keyframes antiLoop {
+  0%{
+    margin-left: 100%;
+  }
+  100%{
+    margin-left: -100%;
   }  
 }
 </style>
